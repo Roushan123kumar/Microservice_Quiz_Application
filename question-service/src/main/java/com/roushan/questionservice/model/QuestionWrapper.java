@@ -1,10 +1,22 @@
 package com.roushan.questionservice.model;
 
+// Question without answer (for quiz)
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * This is the object question-service SERIALIZES into JSON and sends back
+ * to quiz-service. It must stay field-identical to
+ * quiz-service's com.roushan.quizservice.model.QuestionWrapper, since that's
+ * the class Feign deserializes the response into on the other end.
+ */
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class QuestionWrapper {
 
     private Integer id;
@@ -13,13 +25,4 @@ public class QuestionWrapper {
     private String option2;
     private String option3;
     private String option4;
-
-    public QuestionWrapper(Integer id, String questionTitle, String option1, String option2, String option3, String option4) {
-        this.id = id;
-        this.questionTitle = questionTitle;
-        this.option1 = option1;
-        this.option2 = option2;
-        this.option3 = option3;
-        this.option4 = option4;
-    }
 }

@@ -6,6 +6,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 
+// this contain all the quesitons details
+
 @Data
 @Entity
 public class Question {

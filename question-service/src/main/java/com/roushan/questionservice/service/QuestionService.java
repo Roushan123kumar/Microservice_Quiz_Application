@@ -1,10 +1,14 @@
 package com.roushan.questionservice.service;
 
 
+// dao--details of questions
 import com.roushan.questionservice.dao.QuestionDao;
+
+// model
 import com.roushan.questionservice.model.Question;
 import com.roushan.questionservice.model.QuestionWrapper;
 import com.roushan.questionservice.model.Response;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,13 +17,19 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+
+//Spring sees @Service and creates an object of QuestionService.
 @Service
 public class QuestionService {
+	
+	//Spring automatically: Finds QuestionDao Creates its object Injects it into QuestionService
     @Autowired
     QuestionDao questionDao;
 
     public ResponseEntity<List<Question>> getAllQuestions() {
         try {
+        	//Fetches all data from database. and 200 response.
+        	//Data is returned to controller.
             return new ResponseEntity<>(questionDao.findAll(), HttpStatus.OK);
         }catch (Exception e){
             e.printStackTrace();
